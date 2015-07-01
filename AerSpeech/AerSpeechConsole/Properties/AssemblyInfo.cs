@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AerSpeechConsole")]
-[assembly: AssemblyDescription("Audio Expository Response Interface")]
+[assembly: AssemblyTitle("NMSpeechConsole")]
+[assembly: AssemblyDescription("Navigation Matrix Interface")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CMDR Tei Lin")]
-[assembly: AssemblyProduct("AerSpeech")]
+[assembly: AssemblyCompany("CMDR Antrys")]
+[assembly: AssemblyProduct("NMSpeech")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7f54251e-1f5e-4157-aaec-49e4328b96d9")]
+[assembly: Guid("A4F3CE09-EDE0-4E6F-BD81-115EBD89B0EC")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -31,9 +31,9 @@ namespace AerWPF
         {
             InitializeComponent();
 
-            AerDebug.OnLogSpeech += this.LogSpeech;
-            AerDebug.OnLogSay += this.LogSay;
-            AerDebug.OnLog += this.Log;
+            NMDebug.OnLogSpeech += this.LogSpeech;
+            NMDebug.OnLogSay += this.LogSay;
+            NMDebug.OnLog += this.Log;
             _items = new ObservableCollection<LogEntry>();
             LogListBox.ItemsSource = _items;
             

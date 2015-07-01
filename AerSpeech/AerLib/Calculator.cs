@@ -31,7 +31,7 @@ namespace AerSpeech
             }
             catch (Exception e)
             {
-                AerDebug.LogException(e);
+                NMDebug.LogException(e);
             }
             
             return result;

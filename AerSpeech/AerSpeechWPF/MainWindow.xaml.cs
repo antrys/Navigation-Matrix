@@ -43,14 +43,14 @@ namespace AerWPF
 
         public void ExecuteThread()
         {
-            AerDB data = new AerDB(@"json\");
-            AerTalk talk = new AerTalk();
+            NMDB data = new NMDB(@"json\");
+            NMTalk talk = new NMTalk();
 
             Personality person = new Personality(talk, data);
-            AerHandler handler = new AerHandler(data, person);
+            NMHandler handler = new NMHandler(data, person);
             //I know this is bad, but there's no good way to get the delegate surfaced out of AerInput in to AerTalk yet.
             // This could be solved with a service registry, but I haven't thought that through yet
-            AerInput input = new AerInput(@"Grammars\", person.GrammarLoaded_Handler); 
+            NMInput input = new NMInput(@"Grammars\", person.GrammarLoaded_Handler); 
 
             while (_RunWorker)
             {

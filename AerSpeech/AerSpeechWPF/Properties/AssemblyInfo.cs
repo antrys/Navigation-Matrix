@@ -6,11 +6,11 @@ using System.Windows.Media;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AerWPF")]
-[assembly: AssemblyDescription("Audio Expository Response Interface")]
+[assembly: AssemblyTitle("NMWPF")]
+[assembly: AssemblyDescription("Navigation Manager Interface")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CMDR Tei Lin")]
-[assembly: AssemblyProduct("AerSpeech")]
+[assembly: AssemblyCompany("CMDR Antrys")]
+[assembly: AssemblyProduct("NMSpeech")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Windows.Media;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0d2b1819-1bdc-4d59-8c6b-89949b723d05")]
+[assembly: Guid("1A141F69-480F-48E0-8BBA-BEB462658516")]
 
 // required to support per-monitor DPI awareness in Windows 8.1+
 // see also https://mui.codeplex.com/wikipage?title=Per-monitor%20DPI%20awareness

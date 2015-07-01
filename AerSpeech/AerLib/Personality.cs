@@ -23,12 +23,12 @@ namespace AerSpeech
     /// </remarks>
     public class Personality
     {
-        private AerTalk _Talk;
-        private AerRSS _GalnetRSS;
-        private AerRSS _JokeRSS;
-        private AerWiki _Wikipedia;
-        private AerDB _Data;
-        private AerKeyboard _Keyboard;
+        private NMTalk _Talk;
+        //private NMRSS _GalnetRSS;
+        private NMRSS _JokeRSS;
+        private NMWiki _Wikipedia;
+        private NMDB _Data;
+        private NMKeyboard _Keyboard;
 
         #region State Variables
         private string _CommanderName;
@@ -72,28 +72,29 @@ namespace AerSpeech
         public EliteSystem LastSystem;
         public EliteStation LastStation;
 
-        private int _GalnetEntry; //Current galnet entry index
+        //private int _GalnetEntry; //Current galnet entry index
         private int _JokeEntry;   //Current joke entry index
         private bool _Squelched;
-        private int _StopListeningTime;
-        DateTime _LastQueryTime;
+        //private int _StopListeningTime;
+        //DateTime _LastQueryTime;
         private Dictionary<string, AerInputHandler> _EventRegistry;
-        private bool _ReqQuery;
+        //private bool _ReqQuery;
         #endregion
 
-        public Personality(AerTalk voiceSynth, AerDB data)
+        public Personality(NMTalk voiceSynth, NMDB data)
         {
 
             _Data = data;
             _Talk = voiceSynth;
-            _ReqQuery = Settings.Load("RequireAerQuery", "1").Equals("1");
+            //_ReqQuery = Settings.Load("RequireAerQuery", "1").Equals("1");
             _Talk.SayInitializing();
             _EventRegistry = new Dictionary<string, AerInputHandler>();
-            _Keyboard = new AerKeyboard();
-            _GalnetRSS = new AerRSS("http://www.elitedangerous.com/en/news/galnet/rss");
-            _JokeRSS = new AerRSS("http://www.jokes2go.com/jspq.xml");
-            _Wikipedia = new AerWiki();
-            _StopListeningTime = 30; //30 seconds
+            _Keyboard = new NMKeyboard();
+            //_GalnetRSS = new NMRSS("http://www.elitedangerous.com/en/news/galnet/rss");
+            //_GalnetRSS = new NMRSS("http://community.elitedangerous.com/galnet");
+            _JokeRSS = new NMRSS("http://www.jokes2go.com/jspq.xml");
+            _Wikipedia = new NMWiki();
+            //_StopListeningTime = 30; //30 seconds
 
             _RegisterDefaultHandlers();
         }
@@ -106,11 +107,11 @@ namespace AerSpeech
         {
             if (input.Confidence < input.RequiredConfidence)
             {
-                AerDebug.LogSpeech(input.Text, input.Confidence, false);
+                NMDebug.LogSpeech(input.Text, input.Confidence, false);
                 return;
             }
 
-            AerDebug.LogSpeech(input.Text, input.Confidence, true);
+            NMDebug.LogSpeech(input.Text, input.Confidence, true);
 
             if (input.Command != null)
             { 
@@ -119,7 +120,8 @@ namespace AerSpeech
                     //If we haven't said 'stop listening'
                     if (!_Squelched)
                     {
-                        TimeSpan elapsed = DateTime.UtcNow.Subtract(_LastQueryTime);
+                        _EventRegistry[input.Command](input);
+                       /* TimeSpan elapsed = DateTime.UtcNow.Subtract(_LastQueryTime);
                         if (input.Command.Equals("AerEndQuery"))
                         {
                             //Do nothing until Aer is addressed again...
@@ -141,7 +143,7 @@ namespace AerSpeech
                         else if (!_ReqQuery)
                         {
                             _EventRegistry[input.Command](input);
-                        }
+                        }*/
                     }
                     else
                     {
@@ -154,12 +156,12 @@ namespace AerSpeech
                 }
                 else
                 {
-                    AerDebug.LogError(@"Recieved command that didn't have a handler, command=" + input.Command);
+                    NMDebug.LogError(@"Recieved command that didn't have a handler, command=" + input.Command);
                 }
             }
             else
             {
-                AerDebug.LogError(@"Recieved Recognition Result that didn't have a command semantic, '" + input.ToString() + "'");
+                NMDebug.LogError(@"Recieved Recognition Result that didn't have a command semantic, '" + input.ToString() + "'");
             }
         }
 
@@ -202,7 +204,7 @@ namespace AerSpeech
                 _EventRegistry.Add(Command, handler);
             else
             {
-                AerDebug.LogError("Re-registered command to new handler, command=" + Command);
+                NMDebug.LogError("Re-registered command to new handler, command=" + Command);
                 _EventRegistry[Command] = handler; //Maybe it should just be thrown away?
             }
         }
@@ -215,7 +217,7 @@ namespace AerSpeech
         public void GrammarLoaded_Handler(object sender, LoadGrammarCompletedEventArgs e)
         {
             _Talk.SayReady();
-            AerDebug.Log("Initialization Complete.");
+            NMDebug.Log("Initialization Complete.");
         }
 
         #region Grammar Rule Handlers
@@ -260,7 +262,9 @@ namespace AerSpeech
         [SpeechHandlerAttribute("BrowseGalnet")]
         public void BrowseGalnet_Handler(AerRecognitionResult result)
         {
-            _GalnetEntry = 0;
+            _Talk.Say("Gal-net News is not available at this time. This function is under de-volepment.");
+        }
+         /*   _GalnetEntry = 0;
             if (_GalnetRSS.Loaded)
                 _Talk.Say(_GalnetRSS.Entries[_GalnetEntry].Title);
             else
@@ -304,7 +308,8 @@ namespace AerSpeech
             else
                 _Talk.RandomNack();
         }
-        #endregion
+       */ 
+        #endregion 
 
         #region Other
         [SpeechHandlerAttribute("BasicCalculate")]
@@ -662,7 +667,7 @@ namespace AerSpeech
         [SpeechHandlerAttribute("SayCurrentVersion")]
         public void SayCurrentVersion_Handler(AerRecognitionResult result)
         {
-            _Talk.Say(AerDebug.VERSION_NUMBER);
+            _Talk.Say(NMDebug.VERSION_NUMBER);
 
         }
         #endregion

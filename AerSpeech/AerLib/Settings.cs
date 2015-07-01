@@ -23,7 +23,7 @@ namespace AerSpeech
         static Settings()
         {
             Keys = new Dictionary<string, string>();
-            SettingsFile = AerDebug.GetUserDataPath() + "\\AERSettings.xml";
+            SettingsFile = NMDebug.GetUserDataPath() + "\\NM_Settings.xml";
             ReloadSettings();
         }
 

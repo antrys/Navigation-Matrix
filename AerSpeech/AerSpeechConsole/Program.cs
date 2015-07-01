@@ -14,23 +14,23 @@ namespace AerSpeechConsole
 {
     class Program
     {
-        static AerInput _AerInput;
-        static AerHandler _AerHandler;
+        static NMInput _AerInput;
+        static NMHandler _AerHandler;
         static bool _RunWorker;
+        
         
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the A.E.R. Interface Console");
-            AerDB data = new AerDB(@"json\");
-            AerTalk talk = new AerTalk();
-
+            Console.WriteLine("Welcome to the Navigation Matrix Console by CMDR Antrys\nBased on A.E.R. By SingularTier");
+            NMDB data = new NMDB(@"json\");
+            NMTalk talk = new NMTalk();
             Personality person = new Personality(talk, data);
-            
-            _AerHandler = new AerHandler(data, person);
+            //Settings.ReloadSettings();
+            _AerHandler = new NMHandler(data, person);
             //I know this is bad, but there's no good way to get the delegate surfaced out of AerInput in to AerTalk yet.
             // This could be solved with a service registry, but I haven't thought that through yet
-            _AerInput = new AerInput(@"Grammars\", person.GrammarLoaded_Handler); 
+            _AerInput = new NMInput(@"Grammars\", person.GrammarLoaded_Handler); 
 
             HandleInput();
         }

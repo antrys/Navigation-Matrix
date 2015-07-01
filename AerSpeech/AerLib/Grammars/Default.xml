@@ -2240,9 +2240,9 @@
       <item> Beta Sculptoris <tag> out.id=2235; out.Name="Beta Sculptoris"; </tag></item>
       <item> Beta Trianguli Australis <tag> out.id=2236; out.Name="Beta Trianguli Australis"; </tag></item>
       <item> Beta Volantis <tag> out.id=2237; out.Name="Beta Volantis"; </tag></item>
-      <item> Beta-1 Tucanae <tag> out.id=2238; out.Name="Beta-1 Tucanae"; </tag></item>
-      <item> Beta-2 Tucanae <tag> out.id=2239; out.Name="Beta-2 Tucanae"; </tag></item>
-      <item> Beta-3 Tucani <tag> out.id=2240; out.Name="Beta-3 Tucani"; </tag></item>
+      <item> Beta One Tusk-any <tag> out.id=2238; out.Name="Beta-1 Tucanae"; </tag></item>
+      <item> Beta Two Tusk-any <tag> out.id=2239; out.Name="Beta-2 Tucanae"; </tag></item>
+      <item> Beta Three Tucani <tag> out.id=2240; out.Name="Beta-3 Tucani"; </tag></item>
       <item> Betel <tag> out.id=2241; out.Name="Betel"; </tag></item>
       <item> Beten <tag> out.id=2242; out.Name="Beten"; </tag></item>
       <item> Betet <tag> out.id=2243; out.Name="Betet"; </tag></item>
@@ -37217,7 +37217,7 @@
   </rule>
 
   <rule id="CurrentTime">
-    <item> What time is it? </item>
+    <item> current time </item>
   </rule>
   
   <rule id="Settings">
@@ -37379,6 +37379,8 @@
       <item>
         <one-of>
           <item>Information on</item>
+		  <item>info on</item>
+		  <item>lookup</item>
           <item>tell me about</item>
         </one-of>
         <item>
@@ -37425,11 +37427,50 @@
   </rule>
 
   <rule id="SayCurrentSystem">
+  <item repeat="0-1">
+      <ruleref uri="#CommandPrefix" />
+    </item>
     <one-of>
       <item>What system am I in</item>
-      <item>
-        <item>What is the</item>
+	  <item>Which system am I in</item>
+	  <item>Which System are we in</item>
+	  <item>what system are we in</item>
+	  <item>what system is this</item>
+	  <item>Where am I</item>
+	  <item>Where are we</item>
+	  <item>Where are we at</item>
+	  <item>What's our position</item>
+      <item>what's our current location</item>
+	  <item>remind me where we are</item>
+	  <item>what's this system</item>
+	  <item>tell me where we are</item>
+	  <item>what is this place</item>
+	  <item>what's the name of this place</item>
+	  <item>what's the name of this place again</item>
+	  <item>what's the name of this system</item>
+	  <item>what's the name of this solar system</item>
+	  <item>where the heck are we</item>
+	  <item>where the hell are we</item>
+	  <item>where the fuck are we</item>
+	  <item>what the fuck's the name of this system</item>
+	  <item>what the hell is this system</item>
+	  <item>what's this fuckin system</item>
+	  <item>what's this frickin system</item>
+	  <item>what is this joint</item>
+	  <item>do you know where we are</item>
+	  <item>where do you think we are</item>
+	  <item>what system do you think we're in</item>
+	  <item>where do you have us at</item>
+	  <item>name this system please</item>
+	  <item>where are we at now</item>
+	  <item>
         <one-of>
+		<item>What is the</item>
+		<item>what's the</item>
+        <item>what's our</item>
+		<item>name this</item>
+		</one-of>
+		<one-of>
           <item> current </item>
           <item> local </item>
         </one-of>
@@ -37459,12 +37500,14 @@
   </rule>
   
   <rule id="TypeSystem">
-    <item repeat="0-1">
-      <ruleref uri="#CommandPrefix" />
+    <!-- <item repeat="0-1">
+		<ruleref uri="#CommandPrefix" />
     </item>
-    <item> type system </item>
-    <item>
-      <ruleref uri="#SystemName"/>
+    <item repeat="0-1">
+		<ruleref uri="#SearchPrefix" />
+	</item> -->
+	<item>
+		<ruleref uri="#SystemName"/>
     </item>
   </rule>
 
@@ -37515,30 +37558,43 @@
   
   <rule id="StartListening">
     <one-of>
-      <item>Start Listening</item>
+      <item>navigation matrix on</item>
+	  <item>matrix on</item>
+	  <item>Galaxy Map</item>
     </one-of>
   </rule>
 
   <rule id="StopListening">
     <one-of>
-      <item>Stop listening</item>
+      <item>navigation matrix off</item>
+	  <item>matrix off</item>
+	  <item>exit</item>
+	  <item>privacy mode</item>
     </one-of>
   </rule>
   
   <rule id="SetLocalSystem">
-    <item repeat="0-1">Aer</item>
+    <item repeat="0-1">Holly</item>
     <one-of>
       <item>set</item>
       <item>set current</item>
       <item>set local</item>
       <item>set my current</item>
+	  <item>set our current</item>
       <item>set the current</item>
+	  <item>set our</item>
+	  <item>update our</item>
+	  <item>update our current</item>
+	  <item>let's set our</item>
+	  <item>update the</item>
+	  <item>let's update the current</item>
     </one-of>
     <one-of>
       <item> system </item>
       <item> location </item>
     </one-of>
     <item> to </item>
+	
     <ruleref uri="#SystemName"></ruleref> 
   </rule>
   
@@ -37550,9 +37606,26 @@
           <item> is </item>
           <item repeat="0-1">it to</item>
       </item>
+	  <item>
+          <item> How many light years</item>
+          <item repeat="0-1">away</item>
+          <one-of>
+		  <item> is </item>
+		  <item> to </item>
+		  </one-of>
+          <item repeat="0-1">it to</item>
+      </item>
       <item>
-        <item> what is the distance</item>
         <one-of>
+		<item> what is the distance</item>
+        <item> calculate the distance</item>
+		<item> calculate distance</item>
+		<item> tell me the distance</item>
+		<item> lookup the distance</item>
+		<item> distance</item>
+		<item> lightyears</item>
+		</one-of>
+		<one-of>
           <item>of</item>
           <item>to</item>
         </one-of>
@@ -37612,6 +37685,12 @@
       <item> find </item>
       <item> search for</item>
       <item> look for</item>
+	  <item> look up</item>
+	  <item> let's find</item>
+	  <item> i'm looking for</item>
+	  <item> let's find some</item>
+	  <item> where can we find</item>
+	  
     </one-of>
   </rule> 
   <rule id="FindCommodity">
@@ -37644,9 +37723,24 @@
       <item>How much are</item>
       <item>What is the price of</item>
       <item>What is the average price of</item>
+	  <item>What's the average on</item>
+	  <item>How much is</item>
+	  <item>Give me a price on</item>
+	  <item>Show me a price on</item>
+	  <item>What's the going rate of</item>
+	  <item>What's the average price on</item>
+	  <item>what's</item>
+	  <item>what are</item>
     </one-of>
     <ruleref uri="#commodities"></ruleref>
-    <item repeat="0-1">cost</item>
+    <item repeat="0-1">
+		<item>cost</item>
+		<item>currently going for</item>
+		<item>currently worth</item>
+		<item>going for</item>
+		<item>costing></item>
+		<item>worth</item>
+	</item>	
     <tag> out.Commodity = rules.commodities.id </tag>
   </rule>
   
@@ -37657,23 +37751,53 @@
     <one-of>
       <item>Information on</item>
       <item>tell me about </item>
-    </one-of>
+	  <item>show me the data on</item>
+	  <item>tell me about</item>
+	  <item>give me intel on</item>
+	  <item>info on</item>
+	  <item>data on</item>
+	  <item>intel on</item>
+	  <item>pull up</item>
+	  <item>readout on</item>
+	  <item>give me a readout on</item>
+	  <item>give me data on</item>
+	  <item>let's hear about</item>
+	  <item>what's the scoop on</item>
+	  <item>what's the story on</item>
+	  <item>what's the deal on</item>
+	  <item>get me info on</item>
+	</one-of>
     <item>
       <ruleref uri="#SystemName" />
     </item>
   </rule>
 
   <rule id="AerQuery">
-    <item> Hey Aer </item>
+    <one-of>
+		<item>Aer</item>
+		<item>hey Aer</item>
+		<item>start navimatrix</item>
+		<item>start up navimatrix</item>
+		<item>open navimatrix</item>
+		<item>navimatrix on</item>
+		<item>run navimatrix</item>
+		<item>load navimatrix</item>
+		<item>query</item>
+	</one-of>
   </rule>
 
   <rule id="AerEndQuery">
-    <one-of>
-      <item> Thanks Aer </item>
-      <item> Thank You </item>
-      <item> Nevermind </item>
-    </one-of>
-  </rule>
+    <item>thank you Aer</item>
+	<item>close navimatrix</item>
+	<item>stop navimatrix</item>
+	<item>end navimatrix</item>
+	<item>navimatrix off</item>
+	<item>quit navimatrix</item>
+	<item>exit navimatrix</item>
+	<item>shut down navimatrix</item>
+	<item>unload navimatrix</item>
+	<item>kill navimatrix</item>
+	</rule>
   
   <rule id="AerCapabilities">
     <item> What can you do? </item>
@@ -37695,14 +37819,18 @@
   </rule>
   
   <rule id="CancelSpeech">
-    <item repeat="0-1">Aer</item>
+    <item repeat="0-1">Holly</item>
     <one-of>
       <item> Stop Talking </item>
       <item> Shutup </item>
       <item> Be Quiet </item>
+	  <item> Mute </item>
+	  <item> Pause </item>
+	  <item> Stop </item>
     </one-of>
-    <item repeat="0-1">Aer</item>
+    <item repeat="0-1">Holly</item>
   </rule>
+  
   <rule id="BrowseGalnet">
     <item repeat="0-1">
       <ruleref uri="#CommandPrefix" />
@@ -37712,7 +37840,7 @@
       <item>read</item>
     </one-of>
     <item>Galnet</item>
-  </rule>
+	</rule>
   <rule id="PreviousArticle">
     <one-of>
       <item>Previous Article</item>
@@ -37747,7 +37875,7 @@
   </rule>
 
   <rule id="Greetings">
-    <item repeat="0-1">Aer</item>
+    <item repeat="0-1">Holly</item>
     <one-of>
       <item>
         Hello <tag> out.Greeting = 1; </tag>
@@ -37765,7 +37893,7 @@
         Good Afternoon <tag> out.Greeting = 7; </tag>
       </item>
     </one-of>
-    <item repeat="0-1">Aer</item>
+    <item repeat="0-1">Holly</item>
   </rule>
 
   <rule id="SearchWiki">
@@ -37786,8 +37914,9 @@
   
   <rule id="CommandPrefix">
     <item repeat="0-1">please</item>
-    <item repeat="0-1">Aer</item>
+    <item repeat="0-1">Holly</item>
     <item repeat="0-1">please</item>
+	<item repeat="0-1">ok</item>
     <item repeat="0-1">
       <one-of>
         <item>I need</item>
@@ -37795,8 +37924,16 @@
         <item>can I</item>
         <item>can you</item>
         <item>I would like</item>
+		<item>I would like you</item>
+		<item>I would like for you</item>
         <item>could I</item>
         <item>could you</item>
+		<item>would you please</item>
+		<item>if you would</item>
+		<item>if you could</item>
+		<item>I would Love</item>
+		<item>I would love you</item>
+		<item>I would love for you</item>
       </one-of>
     </item>
     <item repeat="0-1">to</item>
@@ -37804,6 +37941,8 @@
       <one-of>
         <item> give me</item>
         <item> tell me</item>
+		<item> remind me</item>
+		<item> inform me</item>
         <item> have </item>
       </one-of>
     </item>
@@ -37816,6 +37955,10 @@
     <one-of>
       <item>tell me a joke</item>
       <item>tell a joke</item>
+	  <item>lets hear a joke</item>
+	  <item>gimmie a joke</item>
+	  <item>know any new jokes</item>
+	  <item>got any jokes</item>
     </one-of>
   </rule>
 
@@ -37889,7 +38032,13 @@
     <item repeat="0-1">
       <ruleref uri="#CommandPrefix" />
     </item>
-    <item> calculate </item>
+    <one-of>
+	<item> calculate </item>
+	<item> add </item>
+	<item> subtract </item>
+	<item> divide </item>
+	<item> multiply </item>
+	</one-of>
     <ruleref uri="#CalculationBuilder"/>
     <!--
     <item>
